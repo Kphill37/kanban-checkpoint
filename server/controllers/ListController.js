@@ -37,6 +37,7 @@ export default class ListController {
   }
   async create(req, res, next) {
     try {
+      req.body.authorId = req.session.uid
       let data = await _repo.create(req.body)
       return res.status(201).send(data)
     } catch (error) {

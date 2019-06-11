@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 import Axios from 'axios'
 import router from './router'
 
+
 Vue.use(Vuex)
 
 //Allows axios to work locally or live
@@ -20,11 +21,14 @@ let api = Axios.create({
   withCredentials: true
 })
 
+
+
 export default new Vuex.Store({
   state: {
     user: {},
     boards: [],
-    activeBoard: {}
+    activeBoard: {},
+    lists: [],
   },
   mutations: {
     setUser(state, user) {
@@ -32,6 +36,9 @@ export default new Vuex.Store({
     },
     setBoards(state, boards) {
       state.boards = boards
+    },
+    setLists(state, data) {
+      state.lists = data
     }
   },
   actions: {
@@ -81,13 +88,27 @@ export default new Vuex.Store({
         .then(res => {
           dispatch('getBoards')
         })
-    }
+    },
     //#endregion
 
 
     //#region -- LISTS --
+    createList({ commit, dispatch }, payload) {
+      debugger
+      api.post("lists", payload)
+        .then(res => {
+          console.log({ res })
+          dispatch('getLists')
+        })
+    },
+    async getLists({ commit, dispatch }) {
+      try {
+        let res = await api.get('lists/')
+        commit('setLists')
+      } catch (error) {
 
-
+      }
+    }
 
     //#endregion
   }
