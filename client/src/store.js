@@ -29,6 +29,7 @@ export default new Vuex.Store({
     boards: [],
     activeBoard: {},
     lists: [],
+    tasks: {}
   },
   mutations: {
     setUser(state, user) {
@@ -39,7 +40,8 @@ export default new Vuex.Store({
     },
     setLists(state, data) {
       state.lists = data
-    }
+    },
+    // setTasks()
   },
   actions: {
     //#region -- AUTH STUFF --
@@ -91,10 +93,26 @@ export default new Vuex.Store({
     },
     //#endregion
 
+    //#region -- TASKS --
+
+    createTask({ commit, dispatch }, payload) {
+      api.post('tasks', payload)
+        .then(res => {
+          console.log({ res })
+          dispatch("getTasks")
+        })
+    },
+    async getTasks({ commit, dispatch }, listId) {
+
+    },
+
+
+
+    //#endregion
+
 
     //#region -- LISTS --
     createList({ commit, dispatch }, payload) {
-      debugger
       api.post("lists", payload)
         .then(res => {
           console.log({ res })
