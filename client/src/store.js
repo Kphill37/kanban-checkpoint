@@ -102,8 +102,13 @@ export default new Vuex.Store({
           dispatch("getTasks")
         })
     },
-    async getTasks({ commit, dispatch }, listId) {
-
+    async getTasks({ commit, dispatch }, payload) { //not sure what goes here?  listId or payload?
+      try {
+        let res = await api.get("lists/" + payload + "/tasks")
+        commit("setTasks", { listId: payload, results: res.data })
+      } catch (error) {
+        console.error(error)
+      }
     },
 
 

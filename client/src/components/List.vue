@@ -12,7 +12,13 @@
   export default {
     name: 'List',
     data() {
-      return {}
+      return {
+        newTask: {
+          listId: this.listId,
+          title: "",
+          //Server side; pass the boardId
+        }
+      }
     },
 
     computed: {
@@ -23,7 +29,7 @@
         return this.$store.state.lists
       }
     },
-    props: ["listData"]
+    props: ["listData", "listId"]
   }
 </script>
 
