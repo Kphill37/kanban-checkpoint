@@ -42,6 +42,11 @@ server.use('/auth', new AuthController().router)
 import BoardController from './controllers/BoardController'
 server.use('/api/boards', new BoardController().router)
 
+import ListController from './controllers/ListController'
+server.use('/api/lists', new ListController().router)
+
+import TaskController from './controllers/TaskController'
+server.use('/api/tasks', new TaskController().router)
 
 
 //Default Error Handler
