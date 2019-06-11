@@ -5,7 +5,18 @@
       <input type="text" v-model="newList.title">
       <button type="submit" class="btn btn-sm btn-success">Add New List</button>
     </form>
-    <!-- <list v-for="list in lists" :listData='list'></list> -->
+
+    <div class="container">
+      <div class="row">
+
+        <list v-for="list in lists" :key='lists._id' :listData="list" />
+      </div>
+    </div>
+
+
+
+
+
   </div>
 </template>
 
@@ -20,7 +31,7 @@
         newList: {
           title: "",
           boardId: this.boardId,
-        }
+        },
       }
     },
     methods: {
@@ -30,15 +41,19 @@
       }
     },
     mounted() {
-      // this.$store.dispatch("getListById", this.$route.params.id)
+      this.$store.dispatch("getLists", this.boardId)
+
     },
-    component: {
+    components: {
       List,
     },
     computed: {
       board() {
 
         return this.$store.state.boards.find(b => b._id == this.boardId) || { title: 'Loading...' }
+      },
+      lists() {
+        return this.$store.state.lists
       }
 
     },

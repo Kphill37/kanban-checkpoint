@@ -1,15 +1,10 @@
 <template>
-  <div class="listItem">
-    <div class="card" v-for="list in lists" :key='lists._id'>
+  <div class="list-item col">
+    <div class="card">
       <div class="card-body">
-        <h5 class="card-title">{{list.title}}</h5>
-        <a href="#" class="card-link">Card link</a>
-        <a href="#" class="card-link">Another link</a>
+        <h5 class="card-title">{{listData.title}}</h5>
       </div>
     </div>
-
-
-
   </div>
 </template>
 
@@ -21,10 +16,14 @@
     },
 
     computed: {
+      tasks() {
+        return this.$store.state.tasks;
+      },
       lists() {
-        return this.$store.state.lists;
+        return this.$store.state.lists
       }
     },
+    props: ["listData"]
   }
 </script>
 
