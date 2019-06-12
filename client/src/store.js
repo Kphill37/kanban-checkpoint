@@ -41,7 +41,15 @@ export default new Vuex.Store({
     setLists(state, data) {
       state.lists = data
     },
-    // setTasks()
+    addTask(state, task) {
+      if (!state.tasks[task.listId]) {
+        state.tasks[task.listId] = []
+      }
+      Vue.set(state.tasks, task.listId, [...state.tasks[task.listId], task])
+    },
+    setTasks(state, payload) {
+      Vue.set(state.tasks, payload.listId, payload.results)
+    }
   },
   actions: {
     //#region -- AUTH STUFF --
@@ -95,17 +103,18 @@ export default new Vuex.Store({
 
     //#region -- TASKS --
 
-    createTask({ commit, dispatch }, payload) {
+    createTask({ commit, dispatch }, payload) {  //double check this later
       api.post('tasks', payload)
         .then(res => {
           console.log({ res })
-          dispatch("getTasks")
+          commit("addTask", res.data)
         })
     },
-    async getTasks({ commit, dispatch }, payload) { //not sure what goes here?  listId or payload?
+    async getTasks({ commit, dispatch }, listId) {
       try {
-        let res = await api.get("lists/" + payload + "/tasks")
-        commit("setTasks", { listId: payload, results: res.data })
+        let res = await api.get("lists/" + listId + "/tasks") //double check this path later as well
+        console.log(res.data)
+        commit("setTasks", { listId: listId, results: res.data })
       } catch (error) {
         console.error(error)
       }

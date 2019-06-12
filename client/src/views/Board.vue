@@ -49,7 +49,6 @@
     },
     computed: {
       board() {
-
         return this.$store.state.boards.find(b => b._id == this.boardId) || { title: 'Loading...' }
       },
       lists() {

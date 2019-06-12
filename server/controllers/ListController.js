@@ -1,9 +1,11 @@
 import express from 'express'
 import ListService from '../services/ListService.js'
+import TaskService from '../services/TaskService.js';
 
 
 let _service = new ListService()
 let _repo = _service.repository
+let _repoTask = new TaskService().repository
 
 
 export default class ListController {
@@ -38,7 +40,9 @@ export default class ListController {
   }
   async getTasksByListId(req, res, next) { //CREATE THE REST OF THIS METHOD
     try {
-      let data = await _repo.findOne({})
+      let data = await _repoTask.find({ listId: req.params.id })
+      console.log(data)
+      return res.send(data)
     } catch (error) {
 
     }
