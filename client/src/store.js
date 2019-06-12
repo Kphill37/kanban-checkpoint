@@ -49,7 +49,7 @@ export default new Vuex.Store({
     },
     setTasks(state, payload) {
       Vue.set(state.tasks, payload.listId, payload.results)
-    }
+    },
   },
   actions: {
     //#region -- AUTH STUFF --
@@ -119,12 +119,29 @@ export default new Vuex.Store({
         console.error(error)
       }
     },
-    addComment({ commit, dispatch }, payload) {
-      api.put('tasks/' + payload._id, payload)
+    updateTask({ commit, dispatch }, task) {
+      api.put('tasks/' + task._id, task)
         .then(res => {
-          dispatch("getTasks", payload.listId)
+          dispatch("getTasks", task.listId)
         })
     },
+    async deleteTask({ commit, dispatch }, id, listId) {
+      try {
+        let res = await api.delete("tasks/" + id)
+        debugger
+        dispatch("getTasks", listId)
+      } catch (error) {
+        console.error(error)
+      }
+
+
+
+      // api.delete("tasks/" + id)
+      //   .then(res => {
+      //     commit("removeTask", id)
+      //   })
+    },
+
 
 
     //#endregion

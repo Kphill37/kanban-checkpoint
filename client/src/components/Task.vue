@@ -4,19 +4,30 @@
       <div class="card-body">
         <h5 class="card-title">Task</h5>
         <p class="card-text">{{taskData.title}}</p>
-        <p
-          class="card-text"
-          v-for="comment in taskData.comments"
-          :key="comment._id"
-        >{{comment.description}} - {{comment.creator}}</p>
+        <button
+          @click="deleteTask(taskData._id)"
+          class="card-link btn btn-warning btn-sm"
+        >Delete Task</button>
+        <hr>
+        <p class="card-text" v-for="comment in taskData.comments" :key="comment._id">
+          "{{comment.description}}" - {{comment.creator}}
+          <br>
+          <button
+            type="button"
+            class="btn btn-warning btn-sm"
+            @click="deleteComment(comment._id)"
+          >Delete</button>
+          <br>
+          <br>
+        </p>
+
         <a v-if="!addComment" @click="addComment = true" class="card-link">+ Comment</a>
         <form @submit.prevent="submitComment" v-else>
           <input type="text" v-model="newComment.creator" placeholder="Enter Name">
           <input type="text" v-model="newComment.description" placeholder="Enter Description">
           <button class="btn btn-success btn-sm" type="submit">submit</button>
-          <button type="button" class="btn btn-danger btn-sm" @click="addComment = false">Nevermind</button>
+          <button type="button" class="btn btn-warning btn-sm" @click="addComment = false">Nevermind</button>
         </form>
-        <a href="#" class="card-link">Another link</a>
       </div>
     </div>
   </div>
@@ -38,7 +49,16 @@ export default {
     submitComment() {
       let comment = { ...this.newComment, taskId: this.taskData._id };
       this.taskData.comments.push(comment);
-      this.$store.dispatch("addComment", this.taskData);
+      this.$store.dispatch("updateTask", this.taskData);
+    },
+    deleteComment(id) {
+      let index = this.taskData.comments.findIndex(c => c._id == id);
+      this.taskData.comments.splice(index, 1);
+      this.$store.dispatch("updateTask", this.taskData);
+    },
+    deleteTask(id, listId) {
+      // let index = this.taskData.findI
+      this.$store.dispatch("deleteTask", id, listId);
     }
   },
   computed: {
@@ -46,7 +66,7 @@ export default {
       return this.$store.state.tasks;
     }
   },
-  props: ["taskData"]
+  props: ["taskData", "listId"]
 };
 </script>
 
