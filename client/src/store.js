@@ -119,7 +119,12 @@ export default new Vuex.Store({
         console.error(error)
       }
     },
-
+    addComment({ commit, dispatch }, payload) {
+      api.put('tasks/' + payload._id, payload)
+        .then(res => {
+          dispatch("getTasks", payload.listId)
+        })
+    },
 
 
     //#endregion

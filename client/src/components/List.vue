@@ -5,7 +5,7 @@
         <h5 class="card-title">{{listData.title}}</h5>
 
         <form @submit.prevent="createTask">
-          <input type="text" v-model="newTask.title">
+          <input type="text" v-model="newTask.title" placeholder="Task description">
           <button type="submit" class="btn btn-sm btn-success">Add New Task</button>
         </form>
 
