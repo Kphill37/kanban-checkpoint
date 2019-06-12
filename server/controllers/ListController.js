@@ -36,6 +36,13 @@ export default class ListController {
 
     }
   }
+  async getTasksByListId(req, res, next) { //CREATE THE REST OF THIS METHOD
+    try {
+      let data = await _repo.findOne({})
+    } catch (error) {
+
+    }
+  }
   async create(req, res, next) {
     try {
       req.body.authorId = req.session.uid
