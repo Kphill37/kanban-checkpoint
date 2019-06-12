@@ -2,12 +2,9 @@
   <div class="col taskTemplate">
     <div class="card">
       <div class="card-body">
-        <h5 class="card-title">Task</h5>
-        <p class="card-text">{{taskData.title}}</p>
-        <button
-          @click="deleteTask(taskData._id)"
-          class="card-link btn btn-warning btn-sm"
-        >Delete Task</button>
+        <h4 class="card-title">{{taskData.title}}</h4>
+        <!-- <p class="card-text">{{taskData.title}}</p> -->
+        <button @click="deleteTask(taskData)" class="card-link btn btn-warning btn-sm">Delete Task</button>
         <hr>
         <p class="card-text" v-for="comment in taskData.comments" :key="comment._id">
           "{{comment.description}}" - {{comment.creator}}
@@ -21,7 +18,11 @@
           <br>
         </p>
 
-        <a v-if="!addComment" @click="addComment = true" class="card-link">+ Comment</a>
+        <a v-if="!addComment" @click="addComment = true" class="card-link">
+          <span>
+            <i class="fas fa-comment-medical hover"></i> Add Comment
+          </span>
+        </a>
         <form @submit.prevent="submitComment" v-else>
           <input type="text" v-model="newComment.creator" placeholder="Enter Name">
           <input type="text" v-model="newComment.description" placeholder="Enter Description">
@@ -56,9 +57,10 @@ export default {
       this.taskData.comments.splice(index, 1);
       this.$store.dispatch("updateTask", this.taskData);
     },
-    deleteTask(id, listId) {
+    deleteTask(taskData) {
+      debugger;
       // let index = this.taskData.findI
-      this.$store.dispatch("deleteTask", id, listId);
+      this.$store.dispatch("deleteTask", taskData);
     }
   },
   computed: {
@@ -66,9 +68,12 @@ export default {
       return this.$store.state.tasks;
     }
   },
-  props: ["taskData", "listId"]
+  props: ["taskData", "listId", "listData"]
 };
 </script>
 
 <style scoped>
+span:hover {
+  color: green;
+}
 </style>

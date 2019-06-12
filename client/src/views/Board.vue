@@ -1,16 +1,15 @@
 <template>
-  <div class="board">
+  <div class="board container">
     {{board.title}}
     <form @submit.prevent="createList">
       <input type="text" v-model="newList.title" placeholder="List title">
       <button type="submit" class="btn btn-sm btn-success">Add New List</button>
     </form>
 
-    <div class="container">
-      <div class="row">
 
-        <list v-for="list in lists" :key='lists._id' :listData="list" />
-      </div>
+    <div class="row">
+
+      <list v-for="list in lists" :key='lists._id' :listData="list" />
     </div>
 
 

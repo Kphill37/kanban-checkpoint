@@ -1,5 +1,5 @@
 <template>
-  <div class="boards">
+  <div class="boards container">
     WELCOME TO THE BOARDS!!!
     <form @submit.prevent="addBoard">
       <input type="text" placeholder="title" v-model="newBoard.title" required>

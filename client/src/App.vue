@@ -35,4 +35,8 @@
   #nav a.router-link-exact-active {
     color: #42b983;
   }
+
+  .card {
+    margin-top: 2vh;
+  }
 </style>
