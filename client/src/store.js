@@ -169,6 +169,14 @@ export default new Vuex.Store({
       } catch (error) {
 
       }
+    },
+    async  deleteList({ commit, dispatch }, listData) {
+      try {
+        let res = await api.delete("lists/" + listData._id)
+        dispatch('getLists', listData.boardId)
+      } catch (error) {
+        console.error(error)
+      }
     }
 
     //#endregion

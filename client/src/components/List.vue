@@ -1,8 +1,12 @@
 <template>
   <div class="list-item col">
+
     <div class="card">
+
       <div class="card-body">
+        <i @click="deleteList(listData)" class="fas fa-trash-alt"> Delete</i>
         <h5 class="card-title">{{listData.title}}</h5>
+
 
         <form @submit.prevent="createTask">
           <input type="text" v-model="newTask.title" placeholder="Task description">
@@ -40,6 +44,10 @@
     methods: {
       createTask() {
         this.$store.dispatch("createTask", this.newTask)
+      },
+      deleteList(listData) {
+        console.log(listData)
+        this.$store.dispatch("deleteList", listData)
       }
     },
     computed: {
