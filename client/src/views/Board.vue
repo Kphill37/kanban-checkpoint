@@ -1,8 +1,10 @@
 <template>
   <div class="board">
     <div class="row">
-      <div class="col">
-        <router-link :to="{name: 'boards'}">Home</router-link>
+      <div class="col ml-4 text-warning">
+        <router-link :to="{name: 'boards'}">
+          <h4>Home</h4>
+        </router-link>
       </div>
       <div class="col-12">
         <h1 class="boardTitle text-center">{{board.title}}</h1>
@@ -60,8 +62,12 @@
   };
 </script>
 
-<style>
+<style scoped>
   .boardTitle {
     color: white;
+  }
+
+  a {
+    color: rgb(255, 193, 7);
   }
 </style>

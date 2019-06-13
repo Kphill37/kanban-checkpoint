@@ -43,7 +43,7 @@
 
   body {
     color: white;
-    background-color: rgb(2, 2, 85);
+    background-color: rgb(48, 48, 77);
     font-family: 'Permanent Marker', cursive;
   }
 
