@@ -159,7 +159,7 @@ export default new Vuex.Store({
       api.post("lists", payload)
         .then(res => {
           console.log({ res })
-          dispatch('getLists')
+          dispatch('getLists', payload.boardId)
         })
     },
     async getLists({ commit, dispatch }, boardId) {

@@ -68,7 +68,7 @@ export default class ListController {
   }
   async delete(req, res, next) {
     try {
-      await _repo.findOneAndRemove({ _id: req.params.id })
+      await _repo.findOneAndRemove({ _id: req.params.id, authorId: req.session.uid })
       return res.send("Successfully Deleted!")
     } catch (error) {
 
