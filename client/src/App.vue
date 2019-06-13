@@ -1,5 +1,11 @@
 <template>
-  <div id="app">
+  <div id="app container-fluid">
+    <div class="row">
+      <div class="col d-flex justify-content-end">
+
+        <button @click="logout" class="btn btn-sm btn-danger">Logout</button>
+      </div>
+    </div>
     <router-view />
   </div>
 </template>
@@ -10,6 +16,11 @@
     mounted() {
       //Authenticate on startup
       this.$store.dispatch('authenticate')
+    },
+    methods: {
+      logout() {
+        this.$store.dispatch("logout")
+      }
     }
   }
 </script>
@@ -19,7 +30,6 @@
     font-family: "Avenir", Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    text-align: center;
     color: #2c3e50;
   }
 
