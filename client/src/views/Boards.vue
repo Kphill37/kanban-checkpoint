@@ -1,16 +1,23 @@
 <template>
   <div class="row boards">
     <div class="col">
-      WELCOME TO THE BOARDS!!!
+
       <form @submit.prevent="addBoard">
         <input type="text" placeholder="title" v-model="newBoard.title" required>
         <input type="text" placeholder="description" v-model="newBoard.description">
         <button type="submit">Create Board</button>
       </form>
 
-      <div v-for="board in boards" :key="board._id">
-        <router-link :to="{name: 'board', params: {boardId: board._id}}">{{board.title}}</router-link>
-        <button @click="deleteBoard(board._id)">DELETE BOARD</button>
+      <div v-for="board in boards" :key="board._id" class="d-flex justify-content-center">
+
+        <ul class="list-group mt-2">
+          <li class="list-group-item">
+            <router-link :to="{name: 'board', params: {boardId: board._id}}">{{board.title}}</router-link>
+            <i @click="deleteBoard(board._id)" class="fas fa-trash-alt ml-2"> Delete</i>
+          </li>
+        </ul>
+
+
       </div>
     </div>
   </div>
@@ -52,3 +59,9 @@
     }
   };
 </script>
+
+<style scoped>
+  {
+    margin-right: 2vw;
+  }
+</style>
