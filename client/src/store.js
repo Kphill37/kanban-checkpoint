@@ -130,6 +130,9 @@ export default new Vuex.Store({
       api.put('tasks/' + task._id, task)
         .then(res => {
           dispatch("getTasks", task.listId)
+          if (task.oldListId) {
+            dispatch('getTasks', task.oldListId)
+          }
         })
     },
     async deleteTask({ commit, dispatch }, taskData) {
@@ -140,14 +143,8 @@ export default new Vuex.Store({
       } catch (error) {
         console.error(error)
       }
-
-
-
-      // api.delete("tasks/" + id)
-      //   .then(res => {
-      //     commit("removeTask", id)
-      //   })
     },
+
 
 
 

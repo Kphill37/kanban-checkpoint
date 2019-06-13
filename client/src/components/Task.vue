@@ -29,6 +29,11 @@
           <button class="btn btn-success btn-sm" type="submit">submit</button>
           <button type="button" class="btn btn-warning btn-sm" @click="addComment = false">Nevermind</button>
         </form>
+        <hr>
+        <select v-model="selected" @change="moveTask()">
+          <option disabled value>Select New List</option>
+          <option v-for="list in lists" :key="list._id" :value="list._id">{{list.title}}</option>
+        </select>
       </div>
     </div>
   </div>
@@ -37,13 +42,15 @@
 <script>
 export default {
   name: "Task",
+  props: ["taskData", "listId", "listData"],
   data() {
     return {
       addComment: false,
       newComment: {
         description: "",
         creator: ""
-      }
+      },
+      selected: ""
     };
   },
   methods: {
@@ -61,14 +68,24 @@ export default {
       debugger;
       // let index = this.taskData.findI
       this.$store.dispatch("deleteTask", taskData);
+    },
+    moveTask() {
+      debugger;
+      let targetTask = this.taskData;
+      targetTask.oldListId = this.taskData.listId;
+      targetTask.listId = this.selected;
+      this.$store.dispatch("updateTask", targetTask);
     }
   },
+
   computed: {
     tasks() {
       return this.$store.state.tasks;
+    },
+    lists() {
+      return this.$store.state.lists;
     }
-  },
-  props: ["taskData", "listId", "listData"]
+  }
 };
 </script>
 
