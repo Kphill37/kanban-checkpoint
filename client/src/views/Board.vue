@@ -1,21 +1,22 @@
 <template>
-  <div class="board container">
-    {{board.title}}
-    <form @submit.prevent="createList">
-      <input type="text" v-model="newList.title" placeholder="List title">
-      <button type="submit" class="btn btn-sm btn-success">Add New List</button>
-    </form>
-
-
+  <div class="board">
+    <div class="row">
+      <div class="col">
+        <router-link :to="{name: 'boards'}">Home</router-link>
+      </div>
+      <div class="col-12">
+        <h1 class="text-center">{{board.title}}</h1>
+        <form @submit.prevent="createList">
+          <input type="text" v-model="newList.title" placeholder="List title">
+          <button type="submit" class="btn btn-sm btn-success m-1">Add New List</button>
+        </form>
+      </div>
+    </div>
     <div class="row">
 
       <list v-for="list in lists" :key='lists._id' :listData="list" />
+
     </div>
-
-
-
-
-
   </div>
 </template>
 
@@ -58,3 +59,7 @@
     props: ["boardId"]
   };
 </script>
+
+<style>
+
+</style>

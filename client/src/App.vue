@@ -2,8 +2,7 @@
   <div id="app container-fluid">
     <div class="row">
       <div class="col d-flex justify-content-end">
-
-        <button @click="logout" class="btn btn-sm btn-danger">Logout</button>
+        <button v-if="user._id" @click="logout" class="btn btn-sm btn-danger m-3" id="logout-btn">Logout</button>
       </div>
     </div>
     <router-view />
@@ -16,6 +15,11 @@
     mounted() {
       //Authenticate on startup
       this.$store.dispatch('authenticate')
+    },
+    computed: {
+      user() {
+        return this.$store.state.user
+      }
     },
     methods: {
       logout() {
@@ -32,6 +36,8 @@
     -moz-osx-font-smoothing: grayscale;
     color: #2c3e50;
   }
+
+
 
   #nav {
     padding: 30px;
