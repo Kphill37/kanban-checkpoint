@@ -31,14 +31,21 @@
 </script>
 
 <style>
+  @import url('https://fonts.googleapis.com/css?family=Permanent+Marker&display=swap');
+
   #app {
-    font-family: "Avenir", Helvetica, Arial, sans-serif;
+    font-family: 'Permanent Marker', cursive;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    color: #2c3e50;
+
+    color: #ffffff;
   }
 
-
+  body {
+    color: white;
+    background-color: rgb(2, 2, 85);
+    font-family: 'Permanent Marker', cursive;
+  }
 
   #nav {
     padding: 30px;
@@ -55,5 +62,9 @@
 
   .card {
     margin-top: 2vh;
+  }
+
+  .fas {
+    color: black
   }
 </style>

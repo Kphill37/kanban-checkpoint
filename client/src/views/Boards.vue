@@ -1,11 +1,13 @@
 <template>
   <div class="row boards">
     <div class="col">
+      <h2 class="appTitle mb-5 text-center">!Procrasti-Nation</h2>
+
 
       <form @submit.prevent="addBoard">
         <input type="text" placeholder="title" v-model="newBoard.title" required>
         <input type="text" placeholder="description" v-model="newBoard.description">
-        <button type="submit">Create Board</button>
+        <button class="d" type="submit">Create Board</button>
       </form>
 
       <div v-for="board in boards" :key="board._id" class="d-flex justify-content-center">
@@ -61,7 +63,7 @@
 </script>
 
 <style scoped>
-  {
-    margin-right: 2vw;
+  .appTitle {
+    color: white;
   }
 </style>

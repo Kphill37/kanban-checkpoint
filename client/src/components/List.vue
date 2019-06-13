@@ -1,25 +1,25 @@
 <template>
   <div class="list-item">
-    <div class="col">
-
-      <div class="card ml-4">
-        <div class="card-body">
-          <i @click="deleteList(listData)" class="fas fa-trash-alt"> Delete</i>
-          <h5 class="card-title">{{listData.title}}</h5>
 
 
-          <form @submit.prevent="createTask">
-            <input type="text" v-model="newTask.title" placeholder="Task description">
-            <button type="submit" class="btn btn-sm btn-success m-1">Add New Task</button>
-          </form>
+    <div class="card m-4">
+      <div class="card-body">
+        <i @click="deleteList(listData)" class="fas fa-trash-alt"> Delete</i>
+        <h5 class="card-title">{{listData.title}}</h5>
+
+
+        <form @submit.prevent="createTask">
+          <input type="text" v-model="newTask.title" placeholder="Task description">
+          <button type="submit" class="btn btn-sm btn-success m-1">Add New Task</button>
+        </form>
+      </div>
+
+      <div class="row">
+        <div class="col-12">
+
+          <task v-for="task in tasks" :key="tasks._id" :taskData="task" />
         </div>
 
-        <div class="row">
-          <div class="col-12">
-
-            <task v-for="task in tasks" :key="tasks._id" :taskData="task" />
-          </div>
-        </div>
       </div>
     </div>
   </div>
@@ -66,5 +66,8 @@
   }
 </script>
 
-<style scoped>
+<style>
+  body {
+    color: black;
+  }
 </style>
