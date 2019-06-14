@@ -1,7 +1,7 @@
 <template>
   <div id="app container-fluid">
     <div class="row">
-      <div class="col d-flex justify-content-end">
+      <div class="col ">
         <button v-if="user._id" @click="logout" class="btn btn-sm btn-danger m-3" id="logout-btn">Logout</button>
       </div>
     </div>
@@ -43,12 +43,14 @@
 
   body {
     color: white;
-    /* background-color: rgb(48, 48, 77); */
+    background-color: #395874;
     background-image: url(https://images.unsplash.com/photo-1558216629-a2f7fe856792?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1267&q=80);
     background-repeat: no-repeat;
-    background-position: cover;
+    background-position: center;
     background-size: cover;
+    min-height: 100vh;
     font-family: 'Permanent Marker', cursive;
+
   }
 
   #nav {
@@ -78,5 +80,10 @@
 
   .card {
     background-color: rgba(255, 255, 255, 0.651);
+  }
+
+  h1,
+  h2 {
+    text-shadow: 2px 2px 2px black;
   }
 </style>

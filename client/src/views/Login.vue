@@ -1,11 +1,15 @@
 <template>
   <div class="login">
     <div class="row ">
-      <div class="col-12 ">
-        <form v-if="loginForm" @submit.prevent="loginUser" class="">
-          <input type="email" v-model="creds.email" placeholder="email">
-          <input type="password" v-model="creds.password" placeholder="password">
-          <button type="submit" class="btn-sm btn-success">Login</button>
+      <div class="col-12 login text-center">
+        <form v-if="loginForm" @submit.prevent="loginUser">
+          <div class="login">
+            <input type="email" v-model="creds.email" placeholder="email">
+            <br>
+            <input type="password" v-model="creds.password" placeholder="password">
+            <br>
+            <button type="submit" class="btn-sm btn-success">Login</button>
+          </div>
         </form>
         <form v-else @submit.prevent="register">
           <input type="text" v-model="newUser.name" placeholder="name">
@@ -60,5 +64,13 @@
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+
+  .login {
+    margin-top: 10vh;
+  }
+
+  input {
+    border-radius: 5px;
   }
 </style>
