@@ -12,13 +12,15 @@ store.on("error", function (err) {
 
 
 export default class Session {
-    express = expressSession({
-        secret: "fjdispjf8a9dspjfpdsa98fjio", //CHANGE ME!!!!
-        cookie: {
-            maxAge: 1000 * 60 * 60 * 24 * 7 * 52 * 2,
-        },
-        store,
-        resave: true,
-        saveUninitialized: true
-    })
+    constructor() {
+        this.express = expressSession({
+            secret: "fjdispjf8a9dspjfpdsa98fjio", //CHANGE ME!!!!
+            cookie: {
+                maxAge: 1000 * 60 * 60 * 24 * 7 * 52 * 2,
+            },
+            store,
+            resave: true,
+            saveUninitialized: true
+        })
+    }
 }
