@@ -43,7 +43,11 @@
 
   body {
     color: white;
-    background-color: rgb(48, 48, 77);
+    /* background-color: rgb(48, 48, 77); */
+    background-image: url(https://images.unsplash.com/photo-1558216629-a2f7fe856792?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1267&q=80);
+    background-repeat: no-repeat;
+    background-position: cover;
+    background-size: cover;
     font-family: 'Permanent Marker', cursive;
   }
 
@@ -66,5 +70,13 @@
 
   .fas {
     color: black
+  }
+
+  .list-group-item {
+    background-color: rgba(255, 255, 255, 0.651);
+  }
+
+  .card {
+    background-color: rgba(255, 255, 255, 0.651);
   }
 </style>

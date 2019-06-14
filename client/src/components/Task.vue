@@ -1,6 +1,6 @@
 <template>
   <div class="col taskTemplate">
-    <div class="card">
+    <div class="card mb-3">
       <div class="card-body">
         <h4 class="card-title">{{taskData.title}}</h4>
         <!-- <p class="card-text">{{taskData.title}}</p> -->
@@ -24,10 +24,27 @@
           </span>
         </a>
         <form @submit.prevent="submitComment" v-else>
-          <input type="text" v-model="newComment.creator" placeholder="Enter Name">
-          <input type="text" v-model="newComment.description" placeholder="Enter Description">
-          <button class="btn btn-success btn-sm" type="submit">submit</button>
-          <button type="button" class="btn btn-warning btn-sm" @click="addComment = false">Nevermind</button>
+          <div class="form-group">
+            <input
+              class="mb-1 input-width"
+              type="text"
+              v-model="newComment.creator"
+              placeholder="Enter Name"
+            >
+            <input
+              class="input-width"
+              type="text"
+              v-model="newComment.description"
+              placeholder="Enter Description"
+            >
+            <br>
+            <button class="btn btn-success btn-sm m-2" type="submit">submit</button>
+            <button
+              type="button"
+              class="btn btn-warning btn-sm"
+              @click="addComment = false"
+            >Nevermind</button>
+          </div>
         </form>
         <hr>
         <select v-model="selected" @change="moveTask()">
@@ -92,5 +109,13 @@ export default {
 <style scoped>
 span:hover {
   color: green;
+}
+.card {
+  background-color: rgba(255, 255, 255, 0.3);
+  border: 1px solid rgb(153, 151, 151);
+}
+.input-width {
+  width: 100%;
+  display: inline-block;
 }
 </style>
