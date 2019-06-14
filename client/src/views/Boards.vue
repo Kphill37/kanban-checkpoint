@@ -5,9 +5,14 @@
 
 
       <form @submit.prevent="addBoard">
-        <input type="text" class="m-2" placeholder="title" v-model="newBoard.title" required>
-        <input type="text" placeholder="description" v-model="newBoard.description">
-        <button class="btn-sm btn-secondary shadow m-2 border-danger" type="submit">Create Board</button>
+        <div class="form-group text-center">
+
+          <input type="text" class="mb-2" placeholder="title" v-model="newBoard.title" required>
+          <br>
+          <input type="text" placeholder="description" v-model="newBoard.description">
+          <br>
+          <button class="btn-sm btn-secondary shadow m-2 border-danger" type="submit">Create Board</button>
+        </div>
       </form>
 
       <div v-for="board in boards" :key="board._id" class="d-flex justify-content-center">
