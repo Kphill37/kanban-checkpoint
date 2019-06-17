@@ -12,10 +12,10 @@ let _listRepo = new ListService().repository
 export default class BoardsController {
   constructor() {
     this.router = express.Router()
+      .use(Authorize.authenticated) //gate keeper / bouncer no routes below are accessable if not logged in
       .get('', this.getAll)
       .get('/:id', this.getById)
       .get('/:id/lists', this.getListsByBoardId)
-      .use(Authorize.authenticated)
       .post('', this.create)
       .put('/:id', this.edit)
       .delete('/:id', this.delete)
