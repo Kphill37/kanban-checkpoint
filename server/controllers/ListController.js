@@ -1,6 +1,7 @@
 import express from 'express'
 import ListService from '../services/ListService.js'
 import TaskService from '../services/TaskService.js';
+import { Authorize } from '../middlewear/authorize.js'
 
 
 let _service = new ListService()
@@ -11,6 +12,7 @@ let _repoTask = new TaskService().repository
 export default class ListController {
   constructor() {
     this.router = express.Router()
+      .use(Authorize.authenticated)
       .get("", this.getAll)
       .get("/:id", this.getById)
       .get("/:id/tasks", this.getTasksByListId)

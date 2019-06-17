@@ -1,6 +1,7 @@
 import express from 'express'
 import TaskService from '../services/TaskService.js'
 import { create } from 'domain';
+import { Authorize } from '../middlewear/authorize.js'
 
 
 let _service = new TaskService()
@@ -10,6 +11,7 @@ let _repo = _service.repository
 export default class TaskController {
   constructor() {
     this.router = express.Router()
+      .use(Authorize.authenticated)
       .get("", this.getAll)
       .get("/:id", this.getById)
       .post("", this.create)
