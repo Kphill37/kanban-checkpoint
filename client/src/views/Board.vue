@@ -38,14 +38,16 @@
     },
     methods: {
       createList() {
-
         this.$store.dispatch("createList", this.newList)
       }
     },
     mounted() {
       this.$store.dispatch("getLists", this.boardId)
-
+      if (!this.$store.state.boards.length) {
+        this.$store.dispatch("getBoards")
+      }
     },
+    beforeDestroy() { },
     components: {
       List,
     },

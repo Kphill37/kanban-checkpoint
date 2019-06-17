@@ -47,7 +47,7 @@ export default class TaskController {
   }
   async edit(req, res, next) {
     try {
-      let data = await _repo.findOneAndUpdate({ _id: req.params.id }, req.body, { new: true })
+      let data = await _repo.findOneAndUpdate({ _id: req.params.id, authorId: req.session.uid }, req.body, { new: true })
       if (data) {
         return res.send(data)
       }

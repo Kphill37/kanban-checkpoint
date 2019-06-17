@@ -16,6 +16,11 @@
     mounted() {
       //Authenticate on startup
       this.$store.dispatch('authenticate')
+      setTimeout(() => {
+        if (!this.$store.state.user._id) {
+          this.$router.push({ name: "login" });
+        }
+      }, 1000)
     },
     computed: {
       user() {
