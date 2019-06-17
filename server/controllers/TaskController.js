@@ -11,9 +11,9 @@ let _repo = _service.repository
 export default class TaskController {
   constructor() {
     this.router = express.Router()
-      .use(Authorize.authenticated)
       .get("", this.getAll)
       .get("/:id", this.getById)
+      .use(Authorize.authenticated)
       .post("", this.create)
       .put("/:id", this.edit)
       .delete("/:id", this.delete)
